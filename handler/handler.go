@@ -169,7 +169,7 @@ func getPunchline(seed string) (string, error) {
 	// 	log.Printf("Could not decode incoming punchline %s", err.Error())
 	// 	return "", err
 	// }
-	return_value := ("You just typed")
+	return_value := ("You just typed somethign in here to check")
 
 	// defer rapLyricResp.Body.Close()
 	return return_value, nil
