@@ -159,19 +159,21 @@ func sanitize(s string) string {
 
 // getPunchline calls the RapLyrics API to get a punchline back
 func getPunchline(seed string) (string, error) {
-	rapLyricResp, err := http.PostForm(rapLyricsApi, url.Values{"input": {seed}})
-	if err != nil {
-		log.Printf("Error while calling raplyrics %s", err.Error())
-		return "", err
-	}
-	var punchline Lyric
-	if err := json.NewDecoder(rapLyricResp.Body).Decode(&punchline); err != nil {
-		log.Printf("Could not decode incoming punchline %s", err.Error())
-		return "", err
-	}
+	// rapLyricResp, err := http.PostForm(rapLyricsApi, url.Values{"input": {seed}})
+	// if err != nil {
+	// 	log.Printf("Error while calling raplyrics %s", err.Error())
+	// 	return "", err
+	// }
+	// var punchline Lyric
+	// if err := json.NewDecoder(rapLyricResp.Body).Decode(&punchline); err != nil {
+	// 	log.Printf("Could not decode incoming punchline %s", err.Error())
+	// 	return "", err
+	// }
+	return_value := ("You just typed")
 
-	defer rapLyricResp.Body.Close()
-	return punchline.Punch, nil
+	// defer rapLyricResp.Body.Close()
+	return return_value, nil
+	// return punchline.Punch, nil
 }
 
 // sendTextToTelegramChat sends a text message to the Telegram chat indentified by its chat Id
