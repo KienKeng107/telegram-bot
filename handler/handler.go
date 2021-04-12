@@ -50,36 +50,33 @@ func (u Update) String() string {
 // Message is a Telegram object that can be found in an update
 // Note that not all Update contains a Message. Update for an Inline Query doesn't.
 type Message struct {
-	Text     string   `json:"text"`
-	Chat     Chat     `json:"chat"`
-	Audio    Audio    `json:"audio"`
-	Voice    Voice    `json:"voice"`
-	Document Document `json:"document"`
+	Text string `json:"text"`
+	Chat Chat   `json:"chat"`
 }
 
 func (m Message) String() string {
-	return fmt.Sprintf("(text: %s, chat: %s, audio: %s)", m.Text, m.Chat, m.Audio)
+	return fmt.Sprintf("(text: %s, chat: %s)", m.Text, m.Chat)
 }
 
-type Audio struct {
-	FileId   string `json:"file_id"`
-	Duration string `json:"duration"`
-}
+// type Audio struct {
+// 	FileId   string `json:"file_id"`
+// 	Duration string `json:"duration"`
+// }
 
-func (a Audio) String() string {
-	return fmt.Sprintf("(file id: %s, duration: %s)", a.FileId, a.Duration)
-}
+// func (a Audio) String() string {
+// 	return fmt.Sprintf("(file id: %s, duration: %s)", a.FileId, a.Duration)
+// }
 
-type Voice Audio
+// type Voice Audio
 
-type Document struct {
-	FileId   string `json:"file_id"`
-	FileName string `json:"file_name"`
-}
+// type Document struct {
+// 	FileId   string `json:"file_id"`
+// 	FileName string `json:"file_name"`
+// }
 
-func (d Document) String() string {
-	return fmt.Sprintf("(file id: %s, file name: %s)", d.FileId, d.FileName)
-}
+// func (d Document) String() string {
+// 	return fmt.Sprintf("(file id: %s, file name: %s)", d.FileId, d.FileName)
+// }
 
 // A Telegram Chat indicates the converstation to which the message belongs
 type Chat struct {
@@ -87,7 +84,7 @@ type Chat struct {
 }
 
 func (c Chat) String() string {
-	return fmt.Sprintf("(id: %s)", c.Id)
+	return fmt.Sprintf("(id: %d)", c.Id)
 }
 
 type Lyric struct {
@@ -172,6 +169,7 @@ func getPunchline(seed string) (string, error) {
 		log.Printf("Could not decode incoming punchline %s", err.Error())
 		return "", err
 	}
+
 	defer rapLyricResp.Body.Close()
 	return punchline.Punch, nil
 }
